@@ -1,7 +1,7 @@
 """A module that calculates the number of DNA bases in a fasta file"""
 
 def base_count(n):
-"""display the number of A's, T's, C's, and G's found in a fasta file"""
+	"""display the number of A's, T's, C's, and G's found in a fasta file"""
 
 	# Check that it's a fasta file (based on file name)
 	filename = n
