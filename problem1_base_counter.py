@@ -1,9 +1,10 @@
 """A module that calculates the number of DNA bases in a fasta file"""
 
+
 def base_count(n):
 	"""display the number of A's, T's, C's, and G's found in a fasta file"""
 
-	# Check that it's a fasta file (based on file name)
+	# Check that it's a fasta file based on file name
 	filename = n
 	filename_split = filename.split('.')
 	assert(len(filename_split) == 2), "File extension must be included in file name"
@@ -29,10 +30,10 @@ def base_count(n):
 
 				# Test whether character is 'A', 'T', 'C', or 'G'
 				if character in base_counter:
-					base_counter[character] += 1 # Increment counter for corresponding character.
+					base_counter[character] += 1  # Increment counter for corresponding character.
 				else:
 					print(character, 'is not a valid DNA base.')
 
-		# Display count for 'A', 'T', 'C', and 'G'
+		# Display count for 'A', 'C', 'T', and 'G'
 		for character in base_counter:
 			print(character, base_counter[character])
