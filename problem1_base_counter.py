@@ -4,7 +4,7 @@ def base_count(n):
 """display the number of A's, T's, C's, and G's found in a fasta file"""
 
 	# Check that it's a fasta file (based on file name)
-	filename = input("Please provide the name of a fasta file:")
+	filename = n
 	filename_split = filename.split('.')
 	assert(len(filename_split) == 2), "File extension must be included in file name"
 	assert (filename_split[1] == 'fasta'), "File extension does not match 'fasta'"
