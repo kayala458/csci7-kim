@@ -5,15 +5,26 @@ def count_digram(n):
     """Computes the number of instances of each base pair"""
 
     # Check that file is a fasta file
-    n = short.fasta
+    n = short.dk
     filename = n
-    filename_split = filename_split = filename.split('.')
-    assert(len(filename_split) == 2), "File extension must be included in file name"
-    assert (filename_split[1] == 'fasta'), "File extension does not match 'fasta'"
+    filename_split = filename.split('.')
+    if len(filename_split) != 2:
+        print("File extension must be included in file name")
+    if filename_split[1] != 'fasta':
+        print("File extension does not match 'fasta'")
 
     # Initialize base-pair counter dictionary
     pairs = {'AA': 0, 'AC': 0, 'AG': 0, 'AT': 0, 'CA': 0, 'CC': 0, 'CG': 0, 'CT': 0, 'GA': 0, 'GC': 0, 'GG': 0, 'GT': 0,
             'TA': 0, 'TC': 0, 'TG': 0, 'TT': 0}
+
+    # Open the file
+    with open(filename, 'r') as fasta:
+
+        # Read over each line, skip the first line (header line)
+        for line in fasta[1:]:
+
+            # Remove carriage return at end of line
+            my_line = line.strip()
 
 
 def printDigrams(pairsCount: Dict[str, int]):
