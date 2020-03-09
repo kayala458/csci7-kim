@@ -1,6 +1,7 @@
 """A module that counts and prints the number of DNA base pairs in a fasta file"""
 from typing import Dict
 
+
 def count_digram(n):
     """Computes the number of instances of each base pair"""
 
@@ -16,16 +17,16 @@ def count_digram(n):
     pairsCount = {'AA': 0, 'AC': 0, 'AG': 0, 'AT': 0, 'CA': 0, 'CC': 0, 'CG': 0, 'CT': 0, 'GA': 0, 'GC': 0, 'GG': 0,
                   'GT': 0, 'TA': 0, 'TC': 0, 'TG': 0, 'TT': 0}
 
-    # Open the file
+    # Open the file for reading
     with open(filename, 'r') as fasta:
 
         # Skip the first line (header line)
         fasta.readline()
 
-        # Initialize empty string to store content of all lines
+        # Initialize empty string to store content of all lines in file
         new_string = ""
 
-        # Read over each line
+        # Read over each line in the fasta file
         for line in fasta:
 
             # Remove carriage return at end of line
@@ -53,10 +54,11 @@ def count_digram(n):
                 else:
                     print(pair, 'is not a valid DNA pair.')
 
-    return(pairsCount)
+    return pairsCount
+
 
 def printDigrams(pairsCount: Dict[str, int]):
-    "Print the digrams"
+    """Print the digrams"""
 
     bases = ['A', 'G', 'C', 'T']
 
@@ -66,7 +68,6 @@ def printDigrams(pairsCount: Dict[str, int]):
         print(ch.rjust(7), end=' ')
     print()
 
-
     # Print the body of the table
     for ch1 in bases:
         print(ch1, end=' ')
@@ -74,7 +75,7 @@ def printDigrams(pairsCount: Dict[str, int]):
         # Print a row of the table
         for ch2 in bases:
             digram = ch1 + ch2
-            if (digram in pairsCount):
+            if digram in pairsCount:
                 count = pairsCount[digram]
             else:
                 count = 0
