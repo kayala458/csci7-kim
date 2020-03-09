@@ -1,11 +1,10 @@
 """A module that counts and prints the number of DNA base pairs in a fasta file"""
-
+from typing import Dict
 
 def count_digram(n):
     """Computes the number of instances of each base pair"""
 
     # Check that file is a fasta file
-    n = 'short.fasta'
     filename = n
     filename_split = filename.split('.')
     if len(filename_split) != 2:
@@ -14,8 +13,8 @@ def count_digram(n):
         print("File extension does not match 'fasta'")
 
     # Initialize base-pair counter dictionary
-    pairsCount = {'AA': 0, 'AC': 0, 'AG': 0, 'AT': 0, 'CA': 0, 'CC': 0, 'CG': 0, 'CT': 0, 'GA': 0, 'GC': 0, 'GG': 0, 'GT': 0,
-            'TA': 0, 'TC': 0, 'TG': 0, 'TT': 0}
+    pairsCount = {'AA': 0, 'AC': 0, 'AG': 0, 'AT': 0, 'CA': 0, 'CC': 0, 'CG': 0, 'CT': 0, 'GA': 0, 'GC': 0, 'GG': 0,
+                  'GT': 0, 'TA': 0, 'TC': 0, 'TG': 0, 'TT': 0}
 
     # Open the file
     with open(filename, 'r') as fasta:
@@ -35,12 +34,26 @@ def count_digram(n):
             # Store content of line in new string, for each line in file
             new_string = new_string + my_line
 
-            for i, character in enumerate(my_line):
-                first = my_line[i]
-                second = my_line[i + 1]
+        # Read each character in new_string, give each character an index
+        for i, character in enumerate(new_string):
+
+            # Read each character, up until the second to last character
+            if i < (len(new_string) - 1):
+
+                # Store first and second characters from current window
+                first = new_string[i]
+                second = new_string[i + 1]
+
+                # Combine first and second characters to form a base pair
                 pair = first + second
 
-    print(pairsCount)
+                # Increase pair count if a valid base pair
+                if pair in pairsCount:
+                    pairsCount[pair] += 1  # Increment counter for corresponding base pair.
+                else:
+                    print(pair, 'is not a valid DNA pair.')
+
+    return(pairsCount)
 
 def printDigrams(pairsCount: Dict[str, int]):
     "Print the digrams"
@@ -66,6 +79,6 @@ def printDigrams(pairsCount: Dict[str, int]):
             else:
                 count = 0
 
-            # Print count, with formating
+            # Print count, with formatting
             print(repr(count).rjust(7), end=' ')
         print()
