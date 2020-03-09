@@ -11,4 +11,3 @@ pairsCount = pair_counter.count_digram(n)
 
 # Print the total count of each pair in the form of a digram
 pair_counter.printDigrams(pairsCount)
-
