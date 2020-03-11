@@ -17,45 +17,48 @@ def count_digram(n):
     pairsCount = {'AA': 0, 'AC': 0, 'AG': 0, 'AT': 0, 'CA': 0, 'CC': 0, 'CG': 0, 'CT': 0, 'GA': 0, 'GC': 0, 'GG': 0,
                   'GT': 0, 'TA': 0, 'TC': 0, 'TG': 0, 'TT': 0}
 
-    # Open the file for reading
-    with open(filename, 'r') as fasta:
+    try:
+        # Open the file for reading
+        with open(filename, 'r') as fasta:
 
-        # Skip the first line (header line)
-        fasta.readline()
+            # Skip the first line (header line)
+            fasta.readline()
 
-        # Initialize empty string to store content of all lines in file
-        new_string = ""
+            # Initialize empty string to store content of all lines in file
+            new_string = ""
 
-        # Read over each line in the fasta file
-        for line in fasta:
+            # Read over each line in the fasta file
+            for line in fasta:
 
-            # Remove carriage return at end of line
-            my_line = line.strip()
+                # Remove carriage return at end of line
+                my_line = line.strip()
 
-            # Store content of line in new string, for each line in file
-            new_string = new_string + my_line
+                # Store content of line in new string, for each line in file
+                new_string = new_string + my_line
 
-        # Read each character in new_string, give each character an index
-        for i, character in enumerate(new_string):
+            # Read each character in new_string, give each character an index
+            for i, character in enumerate(new_string):
 
-            # Read each character, up until the second to last character
-            if i < (len(new_string) - 1):
+                # Read each character, up until the second to last character
+                if i < (len(new_string) - 1):
 
-                # Store first and second characters from current window
-                first = new_string[i]
-                second = new_string[i + 1]
+                    # Store first and second characters from current window
+                    first = new_string[i]
+                    second = new_string[i + 1]
 
-                # Combine first and second characters to form a base pair
-                pair = first + second
+                    # Combine first and second characters to form a base pair
+                    pair = first + second
 
-                # Increase pair count if a valid base pair
-                if pair in pairsCount:
-                    pairsCount[pair] += 1  # Increment counter for corresponding base pair.
-                else:
-                    print(pair, 'is not a valid DNA pair.')
+                    # Increase pair count if a valid base pair
+                    if pair in pairsCount:
+                        pairsCount[pair] += 1  # Increment counter for corresponding base pair.
+                    else:
+                        print(pair, 'is not a valid DNA pair.')
 
-    return pairsCount
+        return pairsCount
 
+    except FileNotFoundError:
+        print("Sorry, I wasn't able to locate the file", filename)
 
 def printDigrams(pairsCount: Dict[str, int]):
     """Print the digrams"""
