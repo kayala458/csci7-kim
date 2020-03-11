@@ -60,6 +60,7 @@ def count_digram(n):
     except FileNotFoundError:
         print("Sorry, I wasn't able to locate the file", filename)
 
+
 def printDigrams(pairsCount: Dict[str, int]):
     """Print the digrams"""
 
