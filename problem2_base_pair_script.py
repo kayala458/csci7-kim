@@ -7,6 +7,7 @@ n = input("Please provide the name of a fasta file: ")
 # Count the number of base pairs found in the file
 pairsCount = pair_counter.count_digram(n)
 
+# If file is found
 if pairsCount:
 
     print('The result is:')
